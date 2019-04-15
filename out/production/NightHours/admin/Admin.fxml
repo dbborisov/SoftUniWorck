@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="admin.AdminController">
+   <children>
+      <TabPane prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Users">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox layoutX="355.0" prefHeight="694.0" prefWidth="938.0">
+                           <children>
+                              <TableView fx:id="EventTable" prefHeight="695.0" prefWidth="924.0">
+                                <columns>
+                                  <TableColumn fx:id="what_Incidentcolumn" prefWidth="103.60400390625" text="What Incident" />
+                                  <TableColumn fx:id="descriptioncolumn" prefWidth="155.56439208984375" text="Description" />
+                                    <TableColumn fx:id="whoCalledColumn" prefWidth="111.2078857421875" text="Who Called" />
+                                    <TableColumn fx:id="whoIsOnShiftcolumn" prefWidth="172.0" text="Who is on shift" />
+                                    <TableColumn fx:id="dayTimecolumn" prefWidth="198.0" text="Date / Time" />
+                                    <TableColumn fx:id="statuscolumn1" prefWidth="113.0" text="Status" />
+                                </columns>
+                              </TableView>
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="687.0" prefWidth="355.0">
+                           <children>
+                              <Label prefHeight="29.0" prefWidth="355.0" text="Add Event">
+                                 <padding>
+                                    <Insets left="50.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="whatIncident" promptText="What Incident">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="description" layoutX="10.0" layoutY="39.0" promptText="Description">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="whoCalled" layoutX="10.0" layoutY="69.0" promptText="Who called">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <TextField fx:id="onShift" layoutX="10.0" layoutY="98.0" promptText="Who is on shift">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <DatePicker fx:id="dayTime" prefHeight="29.0" prefWidth="354.0">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin>
+                              </DatePicker>
+                              <Button mnemonicParsing="false" onAction="#addEventTask" prefHeight="29.0" prefWidth="340.0" text="Add Entry">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="187.0" mnemonicParsing="false" onAction="#clearFields" prefHeight="29.0" prefWidth="340.0" text="Clear Form">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button layoutX="10.0" layoutY="216.0" mnemonicParsing="false" onAction="#loadUserData" prefHeight="29.0" prefWidth="340.0" text="Load Data">
+                                 <VBox.margin>
+                                    <Insets left="15.0" right="15.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
