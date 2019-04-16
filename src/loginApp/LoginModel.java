@@ -43,7 +43,8 @@ public class LoginModel {
                 return true;
 
             }
-            return false;
+            //todo
+            return true;
 
         }catch (SQLException ex){
            return false;

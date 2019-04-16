@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public class UserData {
+    private final Integer id;
     private final StringProperty whatIncident;
     private final StringProperty description;
     private final StringProperty whoCalled;
@@ -11,16 +12,25 @@ public class UserData {
     private final StringProperty dayTime;
 //    private final StringProperty status ;
 
-    public UserData(String whatIncident, String description, String whoCalled, String onShift, String dayTime) {
+    public UserData(Integer id, String whatIncident, String description, String whoCalled, String onShift, String dayTime) {
+        this.id = id;
         this.whatIncident = new SimpleStringProperty(whatIncident);
         this.description = new SimpleStringProperty(description);
         this.whoCalled = new SimpleStringProperty(whoCalled);
         this.onShift = new SimpleStringProperty(onShift);
         this.dayTime = new SimpleStringProperty(dayTime);
+
 //        this.status = new SimpleStringProperty(status);
     }
 
-//    public String getStatus() {
+
+
+    public int getId() {
+        return id;
+    }
+
+
+    //    public String getStatus() {
 //        return status.get();
 //    }
 //

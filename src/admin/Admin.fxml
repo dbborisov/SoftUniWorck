@@ -17,7 +17,7 @@
    <children>
       <TabPane prefHeight="720.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Users">
+          <Tab text="Event Registration and View">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -25,10 +25,10 @@
                            <children>
                               <TableView fx:id="EventTable" prefHeight="695.0" prefWidth="924.0">
                                 <columns>
-                                  <TableColumn fx:id="what_Incidentcolumn" prefWidth="103.60400390625" text="What Incident" />
-                                  <TableColumn fx:id="descriptioncolumn" prefWidth="155.56439208984375" text="Description" />
-                                    <TableColumn fx:id="whoCalledColumn" prefWidth="111.2078857421875" text="Who Called" />
-                                    <TableColumn fx:id="whoIsOnShiftcolumn" prefWidth="172.0" text="Who is on shift" />
+                                  <TableColumn fx:id="what_Incidentcolumn" onEditCommit="#onEditWhatIncident" prefWidth="103.60400390625" text="What Incident" />
+                                  <TableColumn fx:id="descriptioncolumn" onEditCommit="#onEditDescription" prefWidth="155.56439208984375" text="Description" />
+                                    <TableColumn fx:id="whoCalledColumn" onEditCommit="#onEditWhoCalled" prefWidth="111.2078857421875" text="Who Called" />
+                                    <TableColumn fx:id="whoIsOnShiftcolumn" onEditCommit="#onEditOnShift" prefWidth="172.0" text="Who is on shift" />
                                     <TableColumn fx:id="dayTimecolumn" prefWidth="198.0" text="Date / Time" />
                                     <TableColumn fx:id="statuscolumn1" prefWidth="113.0" text="Status" />
                                 </columns>

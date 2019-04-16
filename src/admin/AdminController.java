@@ -1,5 +1,6 @@
 package admin;
 
+import com.sun.istack.internal.Nullable;
 import dbUtil.dbConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,6 +11,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 
 import java.net.URL;
 import java.sql.*;
@@ -62,6 +64,12 @@ public class AdminController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
         this.dc = new dbConnection();
+
+        EventTable.setEditable(true);
+        what_Incidentcolumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        descriptioncolumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        whoCalledColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        whoIsOnShiftcolumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     @FXML
@@ -78,14 +86,15 @@ public class AdminController implements Initializable {
 
 
         try {
+
             Connection conn = dbConnection.getConnection();
             this.data = FXCollections.observableArrayList();
-            Statement statement =conn.createStatement();
+            Statement statement = conn.createStatement();
             statement.execute(sql);
             ResultSet rs = conn.createStatement().executeQuery(sqlSelect);
 
             while (rs.next()) {
-                this.data.add(new UserData(rs.getString(2),
+                this.data.add(new UserData(rs.getInt("id"), rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
@@ -102,6 +111,8 @@ public class AdminController implements Initializable {
         this.whoIsOnShiftcolumn.setCellValueFactory(new PropertyValueFactory<UserData, String>("onShift"));
         this.dayTimecolumn.setCellValueFactory(new PropertyValueFactory<UserData, String>("dayTime"));
 //        this.statuscolumn1.setCellValueFactory(new PropertyValueFactory<UserData, String>("status"));
+
+        EventTable.setEditable(true);
 
         this.EventTable.setItems(null);
         this.EventTable.setItems(this.data);
@@ -145,4 +156,101 @@ public class AdminController implements Initializable {
         this.onShift.setText("");
         this.dayTime.setValue(null);
     }
+
+    public void onEditWhatIncident(TableColumn.CellEditEvent<UserData, String> userDataStringCellEditEvent) {
+
+
+        UserData data = EventTable.getSelectionModel().getSelectedItem();
+        data.setWhatIncident(userDataStringCellEditEvent.getNewValue());
+//        data.setDescription(userDataStringCellEditEvent.getNewValue());
+//        data.setWhoCalled(userDataStringCellEditEvent.getNewValue());
+//        data.setOnShift(userDataStringCellEditEvent.getNewValue());
+
+        String sqlUpdate = "UPDATE event_task SET WHAT_INCIDENT = ?  where id = ?";
+
+        //UPDATE event_task SET WHAT_INCIDENT = ?,DESCRIPTION = ?,WHO_CALLED = ?,ON_SHIFT = ?,DAY_TIME = ?  where id = ?
+        try {
+            Connection conn = dbConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sqlUpdate);
+            stmt.setString(1, data.getWhatIncident());
+//           stmt.setString(2, data.getDescription());
+//           stmt.setString(3, data.getWhoCalled());
+//           stmt.setString(4, data.getOnShift());
+//           stmt.setString(5, data.getDayTime());
+            stmt.setInt(2, data.getId());
+
+            stmt.execute();
+            stmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onEditDescription(TableColumn.CellEditEvent<UserData, String> userDataStringCellEditEvent) {
+        UserData data = EventTable.getSelectionModel().getSelectedItem();
+        data.setDescription(userDataStringCellEditEvent.getNewValue());
+
+        String sqlUpdate = "UPDATE event_task SET DESCRIPTION = ?  where id = ?";
+
+        //UPDATE event_task SET WHAT_INCIDENT = ?,DESCRIPTION = ?,WHO_CALLED = ?,ON_SHIFT = ?,DAY_TIME = ?  where id = ?
+        try {
+            Connection conn = dbConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sqlUpdate);
+            stmt.setString(1, data.getDescription());
+            stmt.setInt(2, data.getId());
+
+            stmt.execute();
+            stmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onEditWhoCalled(TableColumn.CellEditEvent<UserData, String> userDataStringCellEditEvent) {
+        UserData data = EventTable.getSelectionModel().getSelectedItem();
+        data.setWhoCalled(userDataStringCellEditEvent.getNewValue());
+
+        String sqlUpdate = "UPDATE event_task SET WHO_CALLED = ?  where id = ?";
+
+        //UPDATE event_task SET WHAT_INCIDENT = ?,DESCRIPTION = ?,WHO_CALLED = ?,ON_SHIFT = ?,DAY_TIME = ?  where id = ?
+        try {
+            Connection conn = dbConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sqlUpdate);
+            stmt.setString(1, data.getWhoCalled());
+
+            stmt.setInt(2, data.getId());
+
+            stmt.execute();
+            stmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void onEditOnShift(TableColumn.CellEditEvent<UserData, String> userDataStringCellEditEvent) {
+        UserData data = EventTable.getSelectionModel().getSelectedItem();
+        data.setOnShift(userDataStringCellEditEvent.getNewValue());
+
+        String sqlUpdate = "UPDATE event_task SET ON_SHIFT = ?  where id = ?";
+
+        //UPDATE event_task SET WHAT_INCIDENT = ?,DESCRIPTION = ?,WHO_CALLED = ?,ON_SHIFT = ?,DAY_TIME = ?  where id = ?
+        try {
+            Connection conn = dbConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(sqlUpdate);
+            stmt.setString(1, data.getOnShift());
+            stmt.setInt(2, data.getId());
+
+            stmt.execute();
+            stmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
+
+
