@@ -70,6 +70,7 @@ public class AdminController implements Initializable {
         descriptioncolumn.setCellFactory(TextFieldTableCell.forTableColumn());
         whoCalledColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         whoIsOnShiftcolumn.setCellFactory(TextFieldTableCell.forTableColumn());
+//        statuscolumn1.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
     @FXML
@@ -80,7 +81,7 @@ public class AdminController implements Initializable {
                 "    DESCRIPTION   TEXT,\n" +
                 "    WHO_CALLED    VARCHAR,\n" +
                 "    ON_SHIFT      VARCHAR,\n" +
-                "    DAY_TIME      VARCHAR\n" +
+                "    DAY_TIME      VARCHAR,\n" +
                 "    STATUS      VARCHAR\n" +
                 ");";
 
@@ -146,6 +147,7 @@ public class AdminController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        clearFields(event);
     }
 
     @FXML
@@ -189,6 +191,7 @@ public class AdminController implements Initializable {
 
     public void onEditDescription(TableColumn.CellEditEvent<UserData, String> userDataStringCellEditEvent) {
         UserData data = EventTable.getSelectionModel().getSelectedItem();
+
         data.setDescription(userDataStringCellEditEvent.getNewValue());
 
         String sqlUpdate = "UPDATE event_task SET DESCRIPTION = ?  where id = ?";

@@ -65,6 +65,7 @@ public class Controller implements Initializable {
                 }
             } else {
                 this.loginStatus.setText("Wrong User Name or Password");
+                JOptionPane.showMessageDialog(null,"Wrong User Name or Password","Error",JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (Exception localException) {
