@@ -69,7 +69,8 @@ public class Controller implements Initializable {
             }
 
         } catch (Exception localException) {
-            JOptionPane.showMessageDialog(null,localException.getMessage().toString());
+            System.out.println(localException);
+//            JOptionPane.showMessageDialog(null,localException.getMessage().toString());
 
         }
 

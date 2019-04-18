@@ -1,13 +1,9 @@
 <component name="libraryTable">
   <library name="Downloads">
     <CLASSES>
-      <root url="file://C:/Downloads" />
+      <root url="jar://C:/Downloads/sqlite-jdbc-3.23.1.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="file://C:/Downloads" />
-    </SOURCES>
-    <jarDirectory url="file://C:/Downloads" recursive="false" />
-    <jarDirectory url="file://C:/Downloads" recursive="false" type="SOURCES" />
+    <SOURCES />
   </library>
 </component>
